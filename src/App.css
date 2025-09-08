@@ -1,0 +1,76 @@
+.wheel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.schedule-wheel {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  transition: transform 0.5s ease-out;
+}
+
+.wheel-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #ccc;
+}
+
+.task-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 80px;
+  margin-left: -60px;
+  margin-top: -40px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: white;
+  border: 2px solid #888;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  
+  transform-origin: center center;
+}
+
+.task-card.active {
+  transform: scale(1.15);
+  border-color: #007bff;
+  z-index: 10;
+}
+
+.task-card .task-name {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.task-card .roommate-name {
+  margin-top: 5px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 0.9em;
+}

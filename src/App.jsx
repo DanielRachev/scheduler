@@ -1,9 +1,9 @@
 import './App.css'
-import { differenceInWeeks } from 'date-fns'
+import { differenceInWeeks, format, startOfWeek, endOfWeek } from 'date-fns'
+import ScheduleWheel from './components/ScheduleWheel';
 
 const ROOMMATES = ['Alice', 'Bob', 'Charlie', 'Diana', 'Evan'];
 const TASKS = ['Kitchen', 'Trash', 'Floors', 'Bathroom', 'Toilet'];
-
 const START_DATE = new Date('2025-09-08');
 
 function getScheduleForDate(date) {
@@ -18,23 +18,29 @@ function getScheduleForDate(date) {
   return schedule;
 }
 
+function WeekDisplay({ date }) {
+  const weekStart = startOfWeek(date, { weekStartsOn: 1 });
+  const weekEnd = endOfWeek(date, { weekStartsOn: 1 });
+
+  const formattedStart = format(weekStart, 'MMM d');
+  const formattedEnd = format(weekEnd, 'MMM d');
+
+  return (
+    <div className="wheel-center">
+      <h3>{`${formattedStart} - ${formattedEnd}`}</h3>
+    </div>
+  )
+}
 
 function App() {
   const today = new Date();
   const currentSchedule = getScheduleForDate(today);
 
   return (
-    <div className="App">
-      <h1>Weekly Cleaning Schedule</h1>
+    <div className="wheel-container">
+      <ScheduleWheel schedule={currentSchedule} />
 
-      <h2>This Week's Schedule:</h2>
-      <ul>
-        {currentSchedule.map(({ task, roommate }) => (
-          <li key={task}>
-            <strong>{task}:</strong> {roommate}
-          </li>
-        ))}
-      </ul>
+      <WeekDisplay date={today} />
     </div>
   )
 }
