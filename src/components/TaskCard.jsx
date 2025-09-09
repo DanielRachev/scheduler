@@ -1,14 +1,20 @@
 function TaskCard({ task, roommate, rotation, isActive }) {
-  const style = {
-    transform: `rotateZ(${rotation}deg) translateY(-250px) rotateZ(${-rotation}deg)`
+  const containerStyle = {
+    transform: `rotateZ(${rotation}deg)`
+  };
+
+  const cardStyle = {
+    transform: 'translateY(-250px)'
   };
 
   const cardClassName = `task-card ${isActive ? 'active' : ''}`;
 
   return (
-    <div className={cardClassName} style={style}>
-      <div className="task-name">{task}</div>
-      <div className="roommate-name">{roommate}</div>
+    <div style={containerStyle} className="task-card-container">
+      <div className={cardClassName} style={cardStyle}>
+        <div className="task-name">{task}</div>
+        <div className="roommate-name">{roommate}</div>
+      </div>
     </div>
   );
 }
