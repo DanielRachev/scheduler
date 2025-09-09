@@ -21,6 +21,11 @@ function ScheduleWheel({ schedule }) {
         type: "rotation",
         inertia: true,
         edgeResistance: 0.65,
+
+        snap: {
+          rotation: gsap.utils.snap(angleIncrement)
+        },
+
         onDrag: updateActive,
         onThrowUpdate: updateActive,
       });
@@ -41,7 +46,7 @@ function ScheduleWheel({ schedule }) {
     }, wheelRef);
 
     return () => ctx.revert();
-  }, [totalTasks, angleIncrement]); 
+  }, [totalTasks, angleIncrement]);
 
   return (
     <div className="schedule-wheel" ref={wheelRef}>
