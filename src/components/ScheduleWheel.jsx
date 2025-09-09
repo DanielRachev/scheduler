@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import TaskCard from './TaskCard';
 
 import { gsap } from 'gsap';
@@ -13,24 +13,41 @@ function ScheduleWheel({ schedule }) {
 
   const wheelRef = useRef(null);
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       Draggable.create(wheelRef.current, {
         type: "rotation",
         inertia: true,
         edgeResistance: 0.65,
-        // resistance: 2000
+        onDrag: updateActive,
+        onThrowUpdate: updateActive,
       });
+
+      function updateActive() {
+        const rotation = this.rotation;
+        const index = Math.round(-rotation / angleIncrement);
+        const wrappedIndex = (index % totalTasks + totalTasks) % totalTasks;
+        
+        setActiveIndex(prevIndex => {
+          if (prevIndex !== wrappedIndex) {
+            return wrappedIndex;
+          }
+          return prevIndex;
+        });
+      }
+
     }, wheelRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [totalTasks, angleIncrement]); 
 
   return (
     <div className="schedule-wheel" ref={wheelRef}>
       {schedule.map(({ task, roommate }, index) => {
         const rotation = index * angleIncrement;
-        const isActive = index === 0;
+        const isActive = index === activeIndex;
 
         return (
           <TaskCard
