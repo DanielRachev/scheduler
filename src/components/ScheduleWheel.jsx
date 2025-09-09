@@ -21,6 +21,7 @@ function ScheduleWheel({ schedule }) {
         type: "rotation",
         inertia: true,
         edgeResistance: 0.65,
+        resistance: 1000,
 
         snap: {
           rotation: gsap.utils.snap(angleIncrement)

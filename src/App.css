@@ -1,10 +1,11 @@
 :root {
-  --background-color: #FFF9F2;
-  --text-color: #4A4A4A;
-  --primary-accent: #FF7F50;
-  --card-border: #D1D1D1;
-  --white: #FFFFFF;
-  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --background-color: #fff9f2;
+  --text-color: #4a4a4a;
+  --primary-accent: #ff7f50;
+  --card-border: #d1d1d1;
+  --white: #ffffff;
+  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
 }
 
 body {
@@ -26,7 +27,7 @@ body {
   position: relative;
   width: 500px;
   height: 500px;
-  border-radius: 50%;
+  border-radius: 100%;
   border: 2px solid var(--card-border);
   transition: transform 0.5s ease-out;
 }
@@ -46,7 +47,7 @@ body {
   text-align: center;
   padding: 10px;
   border: 2px solid var(--card-border);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .task-card-container {
@@ -72,7 +73,7 @@ body {
   background-color: var(--white);
   border: 3px solid var(--card-border);
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, border-color 0.3s ease;
   transform: translateY(-250px);
 }
@@ -96,4 +97,67 @@ body {
   color: var(--white);
   font-size: 0.9em;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .schedule-wheel {
+    transform: scale(2.5) translateY(220px);
+    border: none;
+    z-index: 50;
+  }
+
+  .wheel-center {
+    position: fixed;
+    top: auto;
+    left: 50%;
+    bottom: -180px;
+    width: 360px;
+    height: 360px;
+    transform: translateX(-50%);
+  }
+
+  .wheel-container::after {
+    content: "";
+    position: fixed;
+    bottom: 25vw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150vw;
+    height: 75vw;
+    border-top: 2px solid var(--card-border);
+    border-radius: 150vw 150vw 0 0;
+    z-index: 0;
+  }
+
+  .wheel-center h3 {
+    margin-bottom: 180px;
+    font-size: 30px;
+  }
+
+  .task-card {
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    margin-top: -30px;
+    transform: translateY(-50vw); 
+  }
+
+  .task-card.active {
+    transform: translateY(-50vw) scale(1.15);
+  }
+
+  .task-card .task-name {
+    font-weight: 600;
+    font-size: 0.5em;
+  }
+
+  .task-card .roommate-name {
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    background-color: var(--primary-accent);
+    color: var(--white);
+    font-size: 0.3em;
+    font-weight: 500;
+  }
 }
