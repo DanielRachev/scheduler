@@ -10,7 +10,7 @@ function getScheduleForDate(date) {
   const weekOffset = differenceInWeeks(date, START_DATE);
 
   const schedule = TASKS.map((task, index) => {
-    const roommateIndex = (index + weekOffset) % ROOMMATES.length;
+    const roommateIndex = (ROOMMATES.length + index - weekOffset % ROOMMATES.length) % ROOMMATES.length;
     const roommate = ROOMMATES[roommateIndex];
     return { task, roommate };
   });
