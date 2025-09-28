@@ -99,11 +99,30 @@ body {
   font-weight: 500;
 }
 
+/* Mobile circle border - separate from rotating wheel */
+.mobile-circle-border {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .schedule-wheel {
     transform: scale(2.3) translateY(60%);
     border: none;
     z-index: 1;
+  }
+
+  .mobile-circle-border {
+    display: block;
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    border: 2px solid var(--card-border);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(2.3) translateY(26%);
+    z-index: 0;
+    pointer-events: none;
   }
 
   .wheel-center {
@@ -132,7 +151,7 @@ body {
     width: 80px;
     height: 80px;
     margin-left: -40px;
-    margin-top: -25%;
+    margin-top: -35%;
   }
 
   .task-card.active {

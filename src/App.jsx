@@ -38,6 +38,7 @@ function App() {
 
   return (
     <div className="wheel-container">
+      <div className="mobile-circle-border"></div>
       <ScheduleWheel schedule={currentSchedule} />
 
       <WeekDisplay date={today} />
