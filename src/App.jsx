@@ -2,9 +2,9 @@ import './App.css'
 import { differenceInWeeks, format, startOfWeek, endOfWeek } from 'date-fns'
 import ScheduleWheel from './components/ScheduleWheel';
 
-const ROOMMATES = ['Alice', 'Bob', 'Charlie', 'Diana', 'Evan'];
+const ROOMMATES = ['Ziyu', 'Aashna', 'Daniel', 'Andrea', 'Pavel'];
 const TASKS = ['Kitchen', 'Trash', 'Floors', 'Bathroom', 'Toilet'];
-const START_DATE = new Date('2025-09-08');
+const START_DATE = new Date('2025-09-22');
 
 function getScheduleForDate(date) {
   const weekOffset = differenceInWeeks(date, START_DATE);
